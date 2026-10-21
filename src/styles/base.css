@@ -1,0 +1,697 @@
+/* ==========================================================================
+   SVG Express — Design tokens & primitives
+   ========================================================================== */
+:root {
+  /* Surfaces */
+  --paper: #f3f1ea;
+  --paper-2: #e9e6dc;
+  --paper-3: #dfdbcf;
+  --white: #fbfaf6;
+
+  /* Ink */
+  --ink: #0b1a12;
+  --ink-2: #2b3a32;
+  --muted: #66746c;
+  --hair: rgba(11, 26, 18, 0.1);
+  --hair-2: rgba(11, 26, 18, 0.16);
+
+  /* Brand */
+  --forest: #06331d;
+  --forest-2: #0a4128;
+  --forest-3: #0f5434;
+  --night: #041f12;
+  --green: #2f8f5b;
+  --mint: #7ee2a8;
+  --mint-dim: rgba(126, 226, 168, 0.14);
+  --signal: #f28c28; /* logo orange — used only for "in motion" */
+  --sky: #2b9bf0; /* logo blue — used only in data viz */
+
+  /* On-dark */
+  --on-dark: #eef3ee;
+  --on-dark-2: rgba(238, 243, 238, 0.64);
+  --on-dark-3: rgba(238, 243, 238, 0.38);
+  --hair-dark: rgba(238, 243, 238, 0.1);
+  --hair-dark-2: rgba(238, 243, 238, 0.18);
+
+  /* Type */
+  --f-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --f-serif: 'Instrument Serif', 'Times New Roman', serif;
+  --f-mono: 'Geist Mono', ui-monospace, monospace;
+
+  /* Motion */
+  --e-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --e-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --e-inout: cubic-bezier(0.87, 0, 0.13, 1);
+
+  /* Layout */
+  --gutter: clamp(16px, 4vw, 64px);
+  --max: 1480px;
+  --r-xl: 2rem;
+  --r-lg: 1.5rem;
+  --r-md: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+body.is-loading {
+  overflow: hidden;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+.dark :focus-visible,
+.night :focus-visible,
+.nav--dark :focus-visible {
+  outline-color: var(--mint);
+}
+.btn:focus-visible,
+.nav__cta:focus-visible {
+  outline-offset: 4px;
+}
+input:focus-visible {
+  outline: none;
+}
+::selection {
+  background: var(--mint);
+  color: var(--night);
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+.section {
+  position: relative;
+  padding-block: clamp(96px, 12vw, 176px);
+}
+.dark {
+  background: var(--forest);
+  color: var(--on-dark);
+}
+.night {
+  background: var(--night);
+  color: var(--on-dark);
+}
+
+/* ---------- Type ---------- */
+.display {
+  font-weight: 450;
+  letter-spacing: -0.045em;
+  line-height: 0.94;
+  font-size: clamp(48px, 8.4vw, 148px);
+  margin: 0;
+}
+.h1 {
+  font-weight: 450;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  font-size: clamp(42px, 6vw, 96px);
+  margin: 0;
+}
+.h2 {
+  font-weight: 450;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  font-size: clamp(36px, 4.6vw, 72px);
+  margin: 0;
+}
+.h3 {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-size: clamp(22px, 2vw, 30px);
+  margin: 0;
+}
+.serif {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.lead {
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 52ch;
+  letter-spacing: -0.005em;
+}
+.dark .lead,
+.night .lead {
+  color: var(--on-dark-2);
+}
+.mono {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Eyebrow ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 10px;
+  border-radius: 999px;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: rgba(11, 26, 18, 0.05);
+  box-shadow: inset 0 0 0 1px var(--hair);
+  color: var(--ink-2);
+}
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(47, 143, 91, 0.18);
+}
+.dark .eyebrow,
+.night .eyebrow,
+.eyebrow--dark {
+  background: rgba(238, 243, 238, 0.06);
+  box-shadow: inset 0 0 0 1px var(--hair-dark);
+  color: var(--on-dark-2);
+}
+.dark .eyebrow::before,
+.night .eyebrow::before,
+.eyebrow--dark::before {
+  background: var(--mint);
+  box-shadow: 0 0 0 3px rgba(126, 226, 168, 0.16);
+}
+
+/* ---------- Buttons (island + button-in-button) ---------- */
+.btn {
+  --bg: var(--ink);
+  --fg: var(--paper);
+  --fill: var(--green);
+  --fill-fg: var(--paper);
+  --dot: rgba(255, 255, 255, 0.12);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 56px;
+  padding: 0 7px 0 26px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--fg);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  isolation: isolate;
+  transition: transform 0.6s var(--e-spring), color 0.45s var(--e-out);
+}
+/* The fill is clipped by this inner layer, so the button itself can draw a glow ring outside its edge */
+.btn__clip {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+/* Liquid fill that blooms from wherever the pointer entered */
+.btn__fill {
+  position: absolute;
+  left: var(--fx, 50%);
+  top: var(--fy, 50%);
+  width: 260%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--fill);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.75s var(--e-spring);
+  z-index: -1;
+  pointer-events: none;
+}
+.btn:hover .btn__fill {
+  transform: translate(-50%, -50%) scale(1);
+}
+.btn:hover {
+  color: var(--fill-fg);
+}
+.btn:active {
+  transform: scale(0.97) !important;
+}
+.btn__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--dot);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.7s var(--e-spring), background 0.5s;
+}
+.btn__icon svg {
+  transition: transform 0.7s var(--e-spring);
+}
+.btn__icon svg + svg {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+.btn:hover .btn__icon {
+  transform: scale(1.08) rotate(-8deg);
+}
+.btn:hover .btn__icon svg:first-child {
+  transform: translate(150%, -150%);
+}
+.btn:hover .btn__icon svg + svg {
+  transform: translate(0, 0);
+}
+.btn--light {
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --fill: var(--mint);
+  --fill-fg: var(--night);
+  --dot: rgba(11, 26, 18, 0.08);
+}
+.btn--mint {
+  --bg: var(--mint);
+  --fg: var(--night);
+  --fill: var(--paper);
+  --fill-fg: var(--night);
+  --dot: rgba(4, 31, 18, 0.1);
+}
+/* Glow pulse — a ring that only animates transform + opacity (GPU-composited, no repaints) */
+.btn--mint::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px rgba(126, 226, 168, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  animation: btnring 3.2s var(--e-out) infinite;
+}
+@keyframes btnring {
+  0% { opacity: 0.9; transform: scale(1); }
+  70%, 100% { opacity: 0; transform: scaleX(1.07) scaleY(1.35); }
+}
+.btn--ghost {
+  --bg: transparent;
+  --fg: var(--on-dark);
+  --fill: var(--on-dark);
+  --fill-fg: var(--night);
+  --dot: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px var(--hair-dark-2);
+}
+.btn--ghost-ink {
+  --bg: transparent;
+  --fg: var(--ink);
+  --fill: var(--ink);
+  --fill-fg: var(--paper);
+  --dot: rgba(11, 26, 18, 0.06);
+  box-shadow: inset 0 0 0 1px var(--hair-2);
+}
+.btn--ghost-ink:hover .btn__icon,
+.btn--ghost:hover .btn__icon {
+  background: rgba(127, 127, 127, 0.18);
+}
+.btn--sm {
+  height: 46px;
+  padding: 0 5px 0 20px;
+  font-size: 14px;
+}
+.btn--sm .btn__icon {
+  width: 36px;
+  height: 36px;
+}
+
+/* ---------- Letter roll ---------- */
+.roll {
+  /* inline-block (not flex) so the label reads as one word in innerText / copy-paste */
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 1.2;
+  padding-block: 0.06em;
+}
+.roll__c {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+  transition: transform 0.6s var(--e-spring);
+  transition-delay: calc(var(--i) * 14ms);
+}
+.roll__c::after {
+  content: attr(data-c);
+  content: attr(data-c) / '';
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+.roll-host:hover .roll__c,
+.roll-host:focus-visible .roll__c {
+  transform: translateY(-100%);
+}
+
+/* Text link with underline draw */
+.tlink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+.tlink svg {
+  transition: transform 0.6s var(--e-spring);
+}
+.tlink:hover svg {
+  transform: translateX(4px);
+}
+.tlink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0.2);
+  transform-origin: left;
+  opacity: 0.5;
+  transition: transform 0.7s var(--e-spring), opacity 0.4s;
+}
+.tlink:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* ---------- Double-bezel shell ---------- */
+.bezel {
+  padding: 6px;
+  border-radius: var(--r-xl);
+  background: rgba(11, 26, 18, 0.035);
+  box-shadow: inset 0 0 0 1px var(--hair);
+}
+.bezel__core {
+  position: relative;
+  height: 100%;
+  border-radius: calc(var(--r-xl) - 6px);
+  background: var(--white);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 30px 60px -40px rgba(11, 26, 18, 0.25);
+  overflow: hidden;
+}
+.dark .bezel,
+.night .bezel,
+.bezel--dark {
+  background: rgba(238, 243, 238, 0.035);
+  box-shadow: inset 0 0 0 1px var(--hair-dark);
+}
+.dark .bezel__core,
+.night .bezel__core,
+.bezel--dark .bezel__core {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Grain (fixed, non-interactive) ---------- */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ---------- Reveal primitives (GSAP takes over) ---------- */
+.split-line {
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+
+/* ---------- Live pulse ---------- */
+.pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint);
+  flex: none;
+}
+.pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse 1.8s var(--e-out) infinite;
+}
+.pulse--signal {
+  background: var(--signal);
+}
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(3.4); opacity: 0; }
+}
+
+/* ---------- Chip ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  background: rgba(11, 26, 18, 0.05);
+  box-shadow: inset 0 0 0 1px var(--hair);
+}
+.dark .chip,
+.night .chip {
+  background: rgba(238, 243, 238, 0.06);
+  box-shadow: inset 0 0 0 1px var(--hair-dark);
+}
+
+/* ---------- Section heading block ---------- */
+.shead {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(24px, 5vw, 96px);
+  align-items: end;
+  margin-bottom: clamp(56px, 7vw, 112px);
+}
+.shead .eyebrow {
+  margin-bottom: 28px;
+}
+@media (max-width: 860px) {
+  .shead {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .grain {
+    display: none;
+  }
+}
+
+/* ---------- Spotlight (pointer-tracked glow on cards) ---------- */
+.spot {
+  --mx: 50%;
+  --my: 50%;
+}
+.spot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(47, 143, 91, 0.12), transparent 60%);
+  transition: opacity 0.5s var(--e-out);
+  z-index: 0;
+}
+.dark .spot::after,
+.night .spot::after {
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(126, 226, 168, 0.12), transparent 60%);
+}
+.spot:hover::after {
+  opacity: 1;
+}
+/* Border that lights up near the pointer */
+.spot-ring {
+  position: relative;
+}
+.spot-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx) var(--my), rgba(47, 143, 91, 0.7), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s var(--e-out);
+  pointer-events: none;
+  z-index: 2;
+}
+.dark .spot-ring::before,
+.night .spot-ring::before {
+  background: radial-gradient(260px circle at var(--mx) var(--my), rgba(126, 226, 168, 0.8), transparent 70%);
+}
+.spot-ring:hover::before {
+  opacity: 1;
+}
+
+
+/* ---------- Architectural column lines on paper sections ---------- */
+.lines {
+  position: relative;
+  isolation: isolate;
+}
+.lines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: min(100%, var(--max));
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+  background-size: calc((100% - 2 * var(--gutter)) / 4) 100%;
+  background-position: var(--gutter) 0;
+  background-repeat: repeat-x;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+  opacity: 0.55;
+}
+
+/* ---------- Eyebrow index ---------- */
+.eyebrow b {
+  font-weight: 500;
+  color: var(--green);
+}
+.dark .eyebrow b,
+.night .eyebrow b,
+.eyebrow--dark b {
+  color: var(--mint);
+}
+.eyebrow {
+  transition: box-shadow 0.4s, background 0.4s;
+}
+.eyebrow:hover {
+  box-shadow: inset 0 0 0 1px var(--hair-2);
+}
+.eyebrow:hover::before {
+  animation: eyeping 0.9s var(--e-out);
+}
+@keyframes eyeping {
+  50% { transform: scale(1.8); }
+}
+
+/* ==========================================================================
+   Performance layer
+   ========================================================================== */
+
+/* Sections out of view stop every looping CSS animation (pulses, marquees, map flows…). */
+.is-offscreen,
+.is-offscreen * {
+  animation-play-state: paused !important;
+}
+
+/* Mobile menu open: freeze the page behind it (native scroll path). */
+html.menu-open,
+html.menu-open body {
+  overflow: hidden;
+}
+
+/* Lite tier — same design, cheaper pixels.
+   Glass blur → slightly more opaque solid fills; film grain off. */
+.lite * {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.lite .grain {
+  display: none;
+}
+.lite .nav__pill { background: rgba(4, 31, 18, 0.9); }
+.lite .nav--light .nav__pill { background: rgba(251, 250, 246, 0.97); }
+.lite .mega__inner { background: rgba(251, 250, 246, 0.99); }
+.lite .mnav { background: rgba(4, 31, 18, 0.985); }
+.lite .track__core { background: rgba(4, 31, 18, 0.93) !important; }
+.lite .infra__badge,
+.lite .chip--glass { background: rgba(4, 31, 18, 0.82) !important; }
+.lite .pj__over { background: rgba(4, 31, 18, 0.93); }
+.lite .pj__tag { background: rgba(251, 250, 246, 0.96); }
+.lite .float { background: rgba(10, 40, 24, 0.96); }

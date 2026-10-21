@@ -1,0 +1,141 @@
+.mf {
+  background: var(--paper);
+}
+.mf__inner {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(96px, 12vh, 140px);
+  padding-bottom: clamp(48px, 7vh, 80px);
+}
+.mf__text {
+  margin: clamp(24px, 4vh, 40px) 0 0;
+  font-size: clamp(32px, min(4.9vw, 8vh), 80px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: 450;
+}
+.mf__w {
+  display: inline-block;
+  white-space: pre;
+}
+.mf__pill {
+  position: relative;
+  display: inline-block;
+  vertical-align: -0.12em;
+  width: 2.1em;
+  height: 0.86em;
+  margin: 0 0.24em 0 0.02em;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--paper-3);
+  transition: width 0.8s var(--e-spring);
+}
+.mf__pill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.6s;
+}
+.mf__cap {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translate(-50%, 140%);
+  white-space: nowrap;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #fff;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(4, 31, 18, 0.7);
+  transition: transform 0.6s var(--e-spring);
+}
+.mf__pill:hover {
+  width: 4.4em;
+}
+.mf__pill:hover .mf__cap {
+  transform: translate(-50%, 0);
+}
+.mf__pill:hover img {
+  filter: saturate(1.15) contrast(1.05);
+}
+.mf__foot {
+  margin-top: clamp(32px, 6vh, 72px);
+  padding-top: 28px;
+  border-top: 1px solid var(--hair);
+  display: grid;
+  grid-template-columns: 1fr 1.3fr auto;
+  gap: 32px;
+  align-items: center;
+}
+.mf__foot .lead {
+  margin: 0;
+}
+.mf__stamp {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.mf__stamp > span:last-child {
+  display: grid;
+  gap: 6px;
+}
+.mf__stamp-big {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.mf__seal {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+.mf__seal svg {
+  position: absolute;
+  inset: 0;
+  animation: spin 18s linear infinite;
+  overflow: visible;
+}
+.mf__seal text {
+  font-family: var(--f-mono);
+  font-size: 9.4px;
+  letter-spacing: 0.18em;
+  fill: var(--ink-2);
+}
+.mf__seal b {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--forest);
+  color: var(--mint);
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  transition: transform 0.7s var(--e-spring);
+}
+.mf__stamp:hover .mf__seal b {
+  transform: rotate(360deg) scale(1.1);
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 860px) {
+  .mf__foot {
+    grid-template-columns: 1fr;
+  }
+  .mf__inner {
+    min-height: 0;
+  }
+}

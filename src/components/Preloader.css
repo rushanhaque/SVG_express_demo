@@ -1,0 +1,70 @@
+.pl {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--night);
+  color: var(--on-dark);
+  display: grid;
+  place-items: center;
+  clip-path: inset(0 0 0 0);
+}
+.pl__stripes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2vh;
+  padding: 0 0;
+  opacity: 0.9;
+}
+.pl__stripe {
+  display: block;
+  height: 6.6vh;
+  background: linear-gradient(90deg, var(--forest) 0%, var(--forest-2) 60%, var(--forest-3) 100%);
+}
+.pl__logo {
+  position: relative;
+  width: min(360px, 62vw);
+  height: auto;
+}
+.pl__meta {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: clamp(24px, 5vh, 48px);
+}
+.pl__words {
+  position: relative;
+  height: 16px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  color: var(--mint);
+}
+.pl__word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(100%);
+}
+.pl__bar {
+  height: 1px;
+  background: var(--hair-dark);
+  margin-bottom: 12px;
+}
+.pl__bar i {
+  display: block;
+  height: 100%;
+  background: var(--on-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.pl__row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--on-dark-2);
+}
+.pl__num {
+  font-size: 13px;
+  color: var(--on-dark);
+}

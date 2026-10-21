@@ -1,0 +1,382 @@
+.infra {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  padding: clamp(88px, 10.5vh, 124px) 0 clamp(24px, 4vh, 48px);
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(90% 70% at 85% 0%, rgba(126, 226, 168, 0.08), transparent 60%), var(--forest);
+}
+.infra__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: clamp(24px, 3.5vh, 48px);
+}
+.infra__title {
+  margin-top: 18px;
+  font-size: clamp(40px, min(5.2vw, 9vh), 84px);
+}
+.infra__title .serif {
+  color: var(--mint);
+}
+.infra__meta {
+  width: min(380px, 100%);
+}
+.infra__meta .lead {
+  margin: 0 0 22px;
+  font-size: 16px;
+}
+.infra__counter {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.infra__count {
+  display: inline-block;
+  height: 26px;
+  overflow: hidden;
+  font-size: 22px;
+  line-height: 26px;
+  color: var(--on-dark);
+}
+.infra__digits {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.8s var(--e-spring);
+}
+.infra__digits span {
+  height: 26px;
+}
+.infra__k {
+  margin-left: auto;
+  color: var(--mint);
+  animation: kin 0.7s var(--e-spring);
+}
+@keyframes kin {
+  from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+}
+
+.infra__track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  will-change: transform;
+}
+.infra__panel {
+  width: min(1100px, 78vw);
+  flex: none;
+}
+.infra__core {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  height: min(54vh, 580px);
+  min-height: 380px;
+}
+.infra__img {
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--r-xl) - 10px);
+  margin: 6px;
+  clip-path: inset(0% 0% 0% 0% round 22px);
+}
+.infra__img img {
+  position: absolute;
+  top: 0;
+  left: -12%;
+  width: 124%;
+  height: 100%;
+  object-fit: cover;
+}
+.infra__badge {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: rgba(4, 31, 18, 0.6);
+  backdrop-filter: blur(10px);
+  color: var(--mint);
+  font-size: 10.5px;
+  box-shadow: inset 0 0 0 1px rgba(238, 243, 238, 0.14);
+}
+.infra__body {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3vw, 44px);
+}
+.infra__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: auto;
+}
+.infra__num-m {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.infra__num {
+  display: block;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 72px;
+  line-height: 0.8;
+  color: var(--on-dark-3);
+}
+.infra__ico {
+  transition: transform 0.8s var(--e-spring), background 0.4s, color 0.4s;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(126, 226, 168, 0.1);
+  color: var(--mint);
+  box-shadow: inset 0 0 0 1px rgba(126, 226, 168, 0.2);
+}
+.infra__kicker {
+  color: var(--mint);
+  margin-top: 24px;
+}
+.infra__h {
+  margin: 10px 0 12px;
+  font-size: clamp(26px, 2.4vw, 38px);
+  font-weight: 450;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+.infra__p {
+  margin: 0 0 24px;
+  color: var(--on-dark-2);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+.infra__specs {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--hair-dark);
+}
+.infra__spec {
+  position: relative;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hair-dark);
+}
+.infra__spec::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--mint);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--e-spring);
+}
+.infra__spec dd {
+  transition: transform 0.6s var(--e-spring), color 0.4s;
+}
+.infra__spec:hover::after {
+  transform: scaleX(1);
+}
+.infra__spec:hover dd {
+  transform: translateX(6px);
+  color: var(--mint);
+}
+.infra__spec:nth-child(odd) {
+  padding-right: 12px;
+}
+.infra__spec dt {
+  color: var(--on-dark-3);
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+.infra__spec dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.infra__end {
+  width: 34vw;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 40px;
+}
+.infra__end p {
+  font-size: clamp(32px, 3.4vw, 54px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 12px 0 0;
+}
+.infra__end .serif {
+  color: var(--mint);
+}
+
+/* Reduced motion: no pin, so let the panels scroll natively */
+.rm .infra__track {
+  width: auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.rm .infra__panel {
+  scroll-snap-align: start;
+}
+
+@media (max-width: 900px) {
+  .infra {
+    min-height: 0;
+  }
+  .infra__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .infra__track {
+    flex-direction: column;
+    width: 100%;
+  }
+  .infra__panel {
+    width: 100%;
+  }
+  .infra__core {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .infra__img {
+    aspect-ratio: 16 / 11;
+  }
+  .infra__img img {
+    left: 0;
+    width: 100%;
+  }
+  .infra__end,
+  .infra__counter {
+    display: none;
+  }
+}
+
+.infra__core > * {
+  position: relative;
+  z-index: 1;
+}
+.infra__panel {
+  transition: opacity 0.8s var(--e-out);
+}
+.infra.is-pinned .infra__panel:not(.is-active) .infra__ico {
+  transform: rotate(-90deg) scale(0.8);
+}
+.infra.is-pinned .infra__panel.is-active .infra__ico {
+  background: var(--mint);
+  color: var(--forest);
+}
+.infra__img img {
+  transition: filter 0.8s;
+}
+.infra__img:hover img {
+  filter: saturate(1.2) contrast(1.05);
+}
+.infra__badge {
+  transition: transform 0.6s var(--e-spring);
+}
+.infra__img:hover .infra__badge {
+  transform: translateY(-4px) scale(1.04);
+}
+
+/* ---------- Road progress ---------- */
+.road {
+  margin-top: clamp(28px, 4vh, 44px);
+}
+.road__in {
+  position: relative;
+  height: 46px;
+}
+.road__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--hair-dark-2) 0 8px, transparent 8px 14px);
+}
+.road__done {
+  position: absolute;
+  inset: 0;
+  background: var(--mint);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.road__stop,
+.road__truck {
+  position: absolute;
+  top: 13px;
+}
+.road__stop {
+  transform: translateX(-50%);
+  text-align: center;
+}
+.road__stop i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px auto 0;
+  border-radius: 50%;
+  background: var(--forest);
+  box-shadow: inset 0 0 0 1.5px var(--hair-dark-2);
+  transition: background 0.5s, box-shadow 0.5s, transform 0.6s var(--e-spring);
+}
+.road__stop em {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: 9.5px;
+  color: var(--on-dark-3);
+  white-space: nowrap;
+  transition: color 0.5s;
+}
+.road__stop.is-on i {
+  background: var(--mint);
+  box-shadow: 0 0 0 5px rgba(126, 226, 168, 0.16);
+  transform: scale(1.2);
+}
+.road__stop.is-on em {
+  color: var(--on-dark);
+}
+.road__truck {
+  left: 0;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.road__truck i {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--mint);
+  color: var(--night);
+  box-shadow: 0 0 0 7px rgba(126, 226, 168, 0.14), 0 8px 20px -6px rgba(0, 0, 0, 0.6);
+}
+/* Same condition as the pin (>900px, motion allowed), so layout never shifts after measuring */
+.rm .road {
+  display: none;
+}
+@media (max-width: 900px) {
+  .road {
+    display: none;
+  }
+}
+/* The rolling chapter counter only means something while the scene is pinned */
+.infra:not(.is-pinned) .infra__counter {
+  display: none;
+}

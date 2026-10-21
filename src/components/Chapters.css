@@ -1,0 +1,121 @@
+.chap {
+  position: fixed;
+  left: 22px;
+  top: 50%;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  color: #fff;
+  mix-blend-mode: difference;
+  transform: translate(-30px, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--e-out), transform 0.9s var(--e-spring);
+}
+.chap.is-on {
+  opacity: 1;
+  transform: translate(0, -50%);
+  pointer-events: auto;
+}
+.chap__count {
+  height: 14px;
+  overflow: hidden;
+  font-size: 11px;
+}
+.chap__digits {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.8s var(--e-spring);
+}
+.chap__digits span {
+  height: 14px;
+  line-height: 14px;
+}
+.chap__ticks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.chap__tick {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 12px;
+  width: 40px;
+}
+.chap__tick i {
+  display: block;
+  width: 10px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  transform-origin: left;
+  transition: width 0.6s var(--e-spring), opacity 0.4s;
+}
+.chap__tick.is-past i {
+  opacity: 0.7;
+}
+.chap__tick.is-active i {
+  width: 26px;
+  opacity: 1;
+}
+.chap__tick:hover i {
+  width: 22px;
+  opacity: 1;
+}
+.chap__label {
+  position: absolute;
+  left: 34px;
+  white-space: nowrap;
+  font-size: 10px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.35s, transform 0.6s var(--e-spring);
+  pointer-events: none;
+}
+.chap__tick:hover .chap__label {
+  opacity: 1;
+  transform: none;
+}
+.chap__name {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 10px;
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+}
+.chap__name span {
+  display: block;
+  animation: chapname 0.8s var(--e-spring);
+}
+@keyframes chapname {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+}
+.chap__prog {
+  width: 1px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.chap__prog i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transform-origin: top;
+  transform: scaleY(0);
+}
+@media (max-width: 1280px), (pointer: coarse) {
+  .chap {
+    display: none;
+  }
+}
